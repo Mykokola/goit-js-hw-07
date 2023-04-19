@@ -20,13 +20,19 @@ galleryEl.addEventListener('click', e => {
     e.preventDefault()
    const imgShow =  basicLightbox.create(`
 		<img src="${e.target.dataset.source}">
-	`)
+	`,{
+    onShow: (imgShow) => { 
+      window.addEventListener('keydown', closeImg)
+    },
+    onClose: (imgShow) => {
+      window.removeEventListener('keydown',closeImg)
+    },
+  }
+  )
     imgShow.show()
-    if(imgShow.visible()){
-        document.addEventListener('keydown', e => {
-            if(e.code === 'Escape'){
-                imgShow.close()
-            }
-        })
-    }
 })
+function closeImg(){
+  if(e.code === 'Escape'){
+    imgShow.close()
+}
+}
