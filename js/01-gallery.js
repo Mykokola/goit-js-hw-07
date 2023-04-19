@@ -31,7 +31,7 @@ galleryEl.addEventListener('click', e => {
   )
     imgShow.show()
 })
-function closeImg(){
+function closeImg(e){
   if(e.code === 'Escape'){
     imgShow.close()
 }
