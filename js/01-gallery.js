@@ -16,10 +16,10 @@ galleryItems.forEach(e => {
   </li>` 
   
 })
-galleryEl.addEventListener('click', e => {
-    e.preventDefault()
+galleryEl.addEventListener('click',showImg)
+
    const imgShow =  basicLightbox.create(`
-		<img src="${e.target.dataset.source}">
+		<img>
 	`,{
     onShow: (imgShow) => { 
       window.addEventListener('keydown', closeImg)
@@ -29,8 +29,12 @@ galleryEl.addEventListener('click', e => {
     },
   }
   )
-    imgShow.show()
-})
+function showImg(e){
+  e.preventDefault()
+  imgShow.element().querySelector('img').src = e.target.dataset.source
+  imgShow.show()
+
+}
 function closeImg(e){
   if(e.code === 'Escape'){
     imgShow.close()
